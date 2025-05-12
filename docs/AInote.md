@@ -42,4 +42,20 @@
 - **继续迁移 Kernel API 分类内容 (`ai`)**:
     - 将 `siyuan-dev-guide/kernel-api/ai/` 目录下的 `index.html`, `chatGPT.html`, 和 `chatGPTWithAction.html` 手动转换为 Markdown。
     - 转换后的文件保存至 `vite-press-test/docs/kernel-api/ai/` 目录下，文件名相应调整 (如 `chat-gpt.md`)。
-    - 详细记录在 `docs/kernel-api/AInote.md`. 
+    - 详细记录在 `docs/kernel-api/AInote.md`.
+
+## 2025-05-13 00:23 HKT
+
+- **更新 `index.md` (站点首页)**:
+    - 在 `features` 部分新增了"插件开发指南"条目，链接指向 `/guide/plugins`。
+    - 修改了页面底部的主要内容文本，添加了指向插件指南的链接。
+    - **目的**: 在首页反映新增的插件开发文档内容。
+
+## 2025-05-13 00:52 HKT
+
+- **修改文件**: `index.md`
+- **内容**:
+    - 在 `features` 部分新增了"挂件开发指南"条目，链接指向 `/guide/widgets`。
+    - 修改了页面底部的主要内容文本，添加了指向挂件指南的链接。
+    - 微调了"快速上手"的描述，加入了"挂件"。
+- **目的**: 在首页反映新增的挂件开发文档内容，并使其与插件文档入口并列。 
