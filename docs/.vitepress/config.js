@@ -8,6 +8,10 @@ export default async () => { // Make the default export an async function
     title: '思源笔记开发文档',
     description: '思源笔记开发者文档和指南。',
     base: '/my-siyuan-dev-guide/',
+    
+    // 忽略特定文件以避免构建错误
+    ignoreDeadLinks: true,
+    srcExclude: ['**/AInote.md'],
 
     themeConfig: {
       nav: [
