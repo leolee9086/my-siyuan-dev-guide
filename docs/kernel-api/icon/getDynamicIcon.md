@@ -1,0 +1,68 @@
+---
+title: 获取动态图标
+---
+# 端点
+
+/api/icon/getDynamicIcon
+
+# 获取动态图标
+
+无需认证
+
+## 接口描述
+
+根据传入的参数动态生成一个 SVG 图标，并以 `image/svg+xml` 的形式返回。常用于文档标题、书签等处的个性化图标展示。该接口不进行缓存。
+
+## 请求参数 (Query Parameters)
+
+所有参数均通过 URL query string 传递，并且都是可选的。
+
+| 参数名 | 类型 | 描述 | 默认值 |
+| --- | --- | --- | --- |
+| type | string | 动态图标的类型。可选值： - `"1"`: 显示年月日星期 (默认) - `"2"`: 显示年月日 - `"3"`: 显示年月 - `"4"`: 仅显示年 - `"5"`: 显示周数 (e.g., "23W" 或 "23周") - `"6"`: 仅显示星期 (周末颜色会自动调整) - `"7"`: 倒数日 (基于 `date` 参数) - `"8"`: 文字图标 (使用 `content` 参数) | "1" |
+| color | string | 图标的主要颜色。可以是预定义颜色名 (e.g., "red", "blue") 或十六进制颜色码 (e.g., "#d23f31", "d23f31")。对于特定类型 (如 `type="6"` 的星期显示)，颜色可能会根据内容 (如是否周末) 自动调整。如果未提供，多数类型会使用内部预设颜色方案。 | 依赖于 `type` 和内部逻辑 |
+| date | string | 日期字符串，格式为 `YYYY-MM-DD` (e.g., "2023-10-26")。用于生成与日期相关的图标内容。 | 当前日期 |
+| lang | string | 语言代码，影响日期和星期等的显示格式。支持 `zh_CN` (简体中文), `zh_CHT` (繁体中文) 等。 | 系统当前语言 (e.g., `util.Lang`) |
+| weekdayType | string | 星期几的显示格式，依赖于 `lang` 参数。 **当 `lang="zh_CN"`:** - `"1"`: "周日", "周一", ... (默认) - `"2"`: "周天", "周一", ... - `"3"`: "星期日", "星期一", ... - `"4"`: "星期天", "星期一", ... **当 `lang="zh_CHT"`:** - `"1"`: "週日", "週一", ... (默认) - `"2"`: "週天", "週一", ... - `"3"`: "星期日", "星期一", ... - `"4"`: "星期天", "星期一", ... **其他语言 (e.g., `en_US`):** - `"1"`: "Mon", "Tue", ... (默认) - `"2"`: "MON", "TUE", ... - `"3"`: "Monday", "Tuesday", ... - `"4"`: "MONDAY", "TUESDAY", ... | "1" |
+| content | string | 当 `type="8"` (文字图标) 时，此参数用于指定要在图标中显示的文本内容。 | 空 (在 `type="8"` 时不显示文字) |
+| id | string | 当 `type="8"` (文字图标) 时，此参数可能用于SVG内部元素的ID或其他特殊处理。 | 无 |
+
+## 返回值
+
+成功时，此接口直接返回一个 `image/svg+xml` 类型的图片资源。可以直接在 `<img>` 标签的 `src` 属性中使用此 API 地址。
+
+接口倾向于通过使用默认值来容错处理无效或缺失的参数，并总是尝试返回一个有效的 SVG 图像 (`HTTP 200 OK`)。
+
+请求示例
+
+### 请求示例
+
+获取一个红色的，内容为 "Test"，类型为文字图标的动态图标：
+
+```
+GET /api/icon/getDynamicIcon?type=8&color=red&content=Test HTTP/1.1
+Host: 127.0.0.1:6806
+```
+
+获取一个显示当前日期的默认类型图标：
+
+```
+GET /api/icon/getDynamicIcon HTTP/1.1
+Host: 127.0.0.1:6806
+```
+
+在 HTML 中的使用方式：
+
+```
+<img src="/api/icon/getDynamicIcon?type=8&color=%23337ab7&content=S&id=myIcon" alt="Dynamic Text Icon">
+```
+
+> 注意：这是一个社区维护的文档，可能与官方最新版本存在差异。
+> 
+> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
+> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/bazaar.go](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/bazaar.go) 中的源码为准。
+> 
+> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
+> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/) 中的源码为准。
+> 
+> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)

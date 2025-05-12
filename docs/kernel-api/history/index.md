@@ -1,0 +1,12 @@
+---
+title: History Index
+---
+-   [/api/history/clearWorkspaceHistory](clearWorkspaceHistory.html)
+-   [/api/history/getDocHistoryContent](getDocHistoryContent.html)
+-   [/api/history/getHistoryItems](getHistoryItems.html)
+-   [/api/history/getNotebookHistory](getNotebookHistory.html)
+-   [/api/history/reindexHistory](reindexHistory.html)
+-   [/api/history/rollbackAssetsHistory](rollbackAssetsHistory.html)
+-   [/api/history/rollbackDocHistory](rollbackDocHistory.html)
+-   [/api/history/rollbackNotebookHistory](rollbackNotebookHistory.html)
+-   [/api/history/searchHistory](searchHistory.html)

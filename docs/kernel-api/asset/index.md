@@ -1,0 +1,21 @@
+---
+title: Asset Index
+---
+-   [/api/asset/fullReindexAssetContent](fullReindexAssetContent.html)
+-   [/api/asset/getDocAssets](getDocAssets.html)
+-   [/api/asset/getDocImageAssets](getDocImageAssets.html)
+-   [/api/asset/getFileAnnotation](getFileAnnotation.html)
+-   [/api/asset/getImageOCRText](getImageOCRText.html)
+-   [/api/asset/getMissingAssets](getMissingAssets.html)
+-   [/api/asset/getUnusedAssets](getUnusedAssets.html)
+-   [/api/asset/insertLocalAssets](insertLocalAssets.html)
+-   [/api/asset/ocr](ocr.html)
+-   [/api/asset/removeUnusedAsset](removeUnusedAsset.html)
+-   [/api/asset/removeUnusedAssets](removeUnusedAssets.html)
+-   [/api/asset/renameAsset](renameAsset.html)
+-   [/api/asset/resolveAssetPath](resolveAssetPath.html)
+-   [/api/asset/setFileAnnotation](setFileAnnotation.html)
+-   [/api/asset/setImageOCRText](setImageOCRText.html)
+-   [/api/asset/statAsset](statAsset.html)
+-   [/api/asset/upload](upload.html)
+-   [/api/asset/uploadCloud](uploadCloud.html)

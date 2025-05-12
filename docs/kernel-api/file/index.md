@@ -1,0 +1,11 @@
+---
+title: File Index
+---
+-   [/api/file/copyFile](copyFile.html)
+-   [/api/file/getFile](getFile.html)
+-   [/api/file/getUniqueFilename](getUniqueFilename.html)
+-   [/api/file/globalCopyFiles](globalCopyFiles.html)
+-   [/api/file/putFile](putFile.html)
+-   [/api/file/readDir](readDir.html)
+-   [/api/file/removeFile](removeFile.html)
+-   [/api/file/renameFile](renameFile.html)

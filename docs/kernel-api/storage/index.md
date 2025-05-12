@@ -1,0 +1,11 @@
+---
+title: Storage Index
+---
+-   [/api/storage/getCriteria](getCriteria.html)
+-   [/api/storage/getLocalStorage](getLocalStorage.html)
+-   [/api/storage/getRecentDocs](getRecentDocs.html)
+-   [/api/storage/removeCriterion](removeCriterion.html)
+-   [/api/storage/removeLocalStorageVals](removeLocalStorageVals.html)
+-   [/api/storage/setCriterion](setCriterion.html)
+-   [/api/storage/setLocalStorage](setLocalStorage.html)
+-   [/api/storage/setLocalStorageVal](setLocalStorageVal.html)

@@ -1,0 +1,105 @@
+---
+title: 退出程序 (exit)
+---
+# 端点
+
+/api/system/exit
+
+# 退出程序 (exit)
+
+[首页](../index.html) | [System API](index.html) | [GitHub Source](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/system.go#L486)
+
+**高风险操作！** 调用此 API 将尝试关闭并退出当前运行的思源笔记程序。
+
+## 功能描述
+
+此 API 端点 `POST /api/system/exit` 用于请求思源笔记程序执行关闭流程并退出。
+
+关闭流程通常包括保存数据、执行必要的同步操作等。可以指定是否强制退出以及退出时如何处理新版本安装包。
+
+## 请求参数
+
+请求体是 JSON 格式，可以包含以下可选参数：
+
+-   `force` (boolean): _可选_。是否强制退出。如果设置为 `true`，可能会跳过某些检查或同步失败时的等待，直接尝试退出。默认为 `false`。
+-   `execInstallPkg` (integer): _可选_。控制退出时如何处理检测到的新版本安装包。
+    -   `0` (默认): 检查新版本，行为由系统决定（可能提示或自动执行）。
+    -   `1`: 明确指示不执行新版本安装。
+    -   `2`: 明确指示执行新版本安装（如果存在）。
+
+**请求示例 (正常退出，默认行为):**
+
+```json
+{}
+```
+
+**请求示例 (强制退出，不安装新版本):**
+
+```json
+{
+  "force": true,
+  "execInstallPkg": 1
+}
+```
+
+## 响应结果
+
+API 会尝试返回一个 JSON 对象，但由于程序即将退出，客户端不一定能完整接收到响应。
+
+-   **正常退出 (预期)**: 理想情况下，返回 `code: 0`。但程序可能在响应发送前就已退出。
+    
+    ```json
+    {
+      "code": 0,
+      "msg": "",
+      "data": null
+    }
+    ```
+    
+-   **同步失败等情况**: 如果关闭过程中遇到可恢复的错误（如同步失败且未强制退出），可能返回 `code: 1` 和提示信息，程序此时可能不会退出，等待用户交互。
+    
+    ```json
+    {
+      "code": 1,
+      "msg": "同步执行失败......", // 包含提示和按钮的 HTML
+      "data": { "closeTimeout": 0 }
+    }
+    ```
+    
+-   **发现新版本**: 如果检测到新版本并准备安装/提示，可能返回 `code: 2` 和提示信息。
+    
+    ```json
+    {
+      "code": 2,
+      "msg": "检测到新版本...", // 提示信息
+      "data": { "closeTimeout": 0 }
+    }
+    ```
+    
+
+**注意：**由于此 API 的目的是退出程序，依赖其返回值进行后续操作是不可靠的。
+
+## 在线测试
+
+**极度危险！** 在线测试此 API 将导致您的思源笔记实例尝试关闭并退出！除非您明确知道自己在做什么，否则请不要使用此测试功能。
+
+API Token:   
+Endpoint:   
+Method:   
+Parameters (JSON, 可选):  
+  
+发送请求 (危险)
+
+### 响应结果:
+
+思源笔记 API 文档 | 最后更新时间：
+
+> 注意：这是一个社区维护的文档，可能与官方最新版本存在差异。
+> 
+> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
+> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/bazaar.go](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/bazaar.go) 中的源码为准。
+> 
+> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
+> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/) 中的源码为准。
+> 
+> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)

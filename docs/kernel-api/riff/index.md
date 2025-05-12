@@ -1,0 +1,20 @@
+---
+title: Riff Index
+---
+-   [/api/riff/addRiffCards](addRiffCards.html)
+-   [/api/riff/batchSetRiffCardsDueTime](batchSetRiffCardsDueTime.html)
+-   [/api/riff/createRiffDeck](createRiffDeck.html)
+-   [/api/riff/getNotebookRiffCards](getNotebookRiffCards.html)
+-   [/api/riff/getNotebookRiffDueCards](getNotebookRiffDueCards.html)
+-   [/api/riff/getRiffCards](getRiffCards.html)
+-   [/api/riff/getRiffCardsByBlockIDs](getRiffCardsByBlockIDs.html)
+-   [/api/riff/getRiffDecks](getRiffDecks.html)
+-   [/api/riff/getRiffDueCards](getRiffDueCards.html)
+-   [/api/riff/getTreeRiffCards](getTreeRiffCards.html)
+-   [/api/riff/getTreeRiffDueCards](getTreeRiffDueCards.html)
+-   [/api/riff/removeRiffCards](removeRiffCards.html)
+-   [/api/riff/removeRiffDeck](removeRiffDeck.html)
+-   [/api/riff/renameRiffDeck](renameRiffDeck.html)
+-   [/api/riff/resetRiffCards](resetRiffCards.html)
+-   [/api/riff/reviewRiffCard](reviewRiffCard.html)
+-   [/api/riff/skipReviewRiffCard](skipReviewRiffCard.html)
