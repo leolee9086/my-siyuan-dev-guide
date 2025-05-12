@@ -42,7 +42,7 @@ export default async () => { // Make the default export an async function
         },
 
         editLink: {
-          pattern: 'https://github.com/leolee9086/siyuan-dev-guide/edit/main/vite-press-test/docs/:path',
+          pattern: 'https://github.com/leolee9086/my-siyuan-dev-guide/edit/main/docs/:path',
           text: '在 GitHub 上编辑此页'
         },
 
@@ -50,4 +50,5 @@ export default async () => { // Make the default export an async function
         lastUpdatedText: '最后更新于'
       }
     }
-  }
+  };
+
