@@ -1,44 +1,98 @@
 ---
-title: getBazaarTemplate
+title: 获取集市模板列表 (getBazaarTemplate)
 ---
-# 端点
 
-/api/bazaar/getBazaarTemplate
+> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/) 中的源码为准。
+> 
+> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
 
+# 获取集市模板列表
 
-# getBazaarTemplate
+## 端点
 
-**方法：**
+`/api/bazaar/getBazaarTemplate`
 
-POST 
+[源文件 (GitHub)](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/bazaar.go#L370 "查看 getBazaarTemplate 接口的源码实现")
 
-**路径：**
+## 接口描述
 
-/api/bazaar/getBazaarTemplate
+此 API 端点用于从思源笔记官方集市获取可用的模板列表。模板是预定义的文档结构，可以在新建文档时快速应用，以提高写作效率。支持按关键词搜索。
 
-获取集市中可用的模板包列表。模板包就是你在思源笔记中新建文档时可以选择套用的那些模板。
+## 认证与授权
 
-**新手提示：** 这个 API 可以帮你列出所有能从集市下载的模板，就像你在思源笔记"设置"->"集市"->"模板"里看到的那样。你还可以输入关键词来快速查找特定类型的模板。
+此接口需要满足以下条件才能访问:
 
-**注意**: 此 API 需要认证。
+1. **用户认证** (`model.CheckAuth`): 需要有效的用户认证,并通过 `Authorization` HTTP 头部传递 API Token
 
-## 地址
+## 请求方法
 
-`POST /api/bazaar/getBazaarTemplate`
+POST
 
-## 请求体 (JSON)
+## 请求参数
+
+请求体应为 JSON 格式，包含以下字段：
+
+| 参数名 | 类型 | 必需 | 描述 |
+| --- | --- | --- | --- |
+| keyword | string | 否 | 搜索关键词，用于在模板名称、描述、作者中进行模糊匹配。为空时返回所有模板 |
+
+## 返回值
+
+| 参数名 | 类型 | 描述 |
+| --- | --- | --- |
+| code | number | 返回码。0: 成功; -1: 服务器错误 |
+| msg | string | 返回信息。失败时包含错误信息 |
+| data | object | 返回数据 |
+
+data 字段内容:
+
+| 参数名 | 类型 | 描述 |
+| --- | --- | --- |
+| packages | object[] | 模板包信息数组。每个包包含以下字段: |
+
+packages 数组中每个对象的字段:
+
+| 参数名 | 类型 | 描述 |
+| --- | --- | --- |
+| name | string | 包名 |
+| author | string | 作者 |
+| version | string | 版本号 |
+| displayName | string | 显示名称 |
+| description | string | 描述 |
+| repoURL | string | 仓库地址 |
+| repoHash | string | 仓库哈希 |
+| iconURL | string | 图标地址 |
+| funding | object | 赞助信息(可选) |
+| installed | boolean | 是否已安装 |
+| hasUpdate | boolean | 是否有更新 |
+
+## 示例
+
+### 请求示例 (获取所有模板)
 
 ```json
+POST /api/bazaar/getBazaarTemplate
+Content-Type: application/json
+Authorization: Token your-token
+
 {
-  "keyword": "可选的关键词"
+  "keyword": ""
 }
 ```
 
--   `keyword`: (`string`) 可选。用于搜索模板包名称、作者或描述的关键词。如果为空或不提供，则返回所有可用的模板包。
+### 请求示例 (搜索特定模板)
 
-## 响应体 (JSON)
+```json
+POST /api/bazaar/getBazaarTemplate
+Content-Type: application/json
+Authorization: Token your-token
 
-标准响应体，其中 \`data.packages\` 字段是一个数组，包含模板包对象。
+{
+  "keyword": "report"
+}
+```
+
+### 返回示例 (成功)
 
 ```json
 {
@@ -47,64 +101,47 @@ POST
   "data": {
     "packages": [
       {
-        "name": "模板包名称",
-        "author": "作者",
-        "version": "版本号",
-        "repoURL": "仓库地址",
-        "repoHash": "仓库哈希",
-        "description": "描述",
-        "iconURL": "预览图 URL",
-        "displayName": "显示名称",
-        "funding": [], // 赞助信息
-        // ... 可能还有其他字段
+        "name": "report-template",
+        "author": "YourName",
+        "version": "1.0.0",
+        "displayName": "周报模板", 
+        "description": "一个用于快速生成周报的模板。",
+        "repoURL": "https://github.com/yourname/report-template",
+        "repoHash": "abcdef1234567890",
+        "iconURL": "preview.png",
+        "funding": {},
+        "installed": true,
+        "hasUpdate": false
       }
-      // ... 更多模板包
+      // ... more packages
     ]
   }
 }
 ```
 
-**注意:** \`packages\` 数组中每个对象的具体字段和结构取决于后端 \`model.BazaarTemplates\` 函数的实现，请以实际返回为准（通常和图标包、插件包的结构类似）。
+### 返回示例 (失败)
 
-## 示例
-
-```javascript
-// 获取所有可用的模板包
-fetch('/api/bazaar/getBazaarTemplate', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': 'Token YOUR_API_TOKEN' // 替换为你的 API Token
-  },
-  body: JSON.stringify({ keyword: "" })
-})
-.then(response => response.json())
-.then(data => {
-  if (data.code === 0) {
-    console.log('获取集市模板包列表成功:', data.data.packages);
-    // 在界面上渲染 data.data.packages 列表
-  } else {
-    console.error('获取集市模板包列表失败:', data.msg);
-  }
-})
-.catch(error => console.error('请求错误:', error));
-
-// 搜索包含 "report" 关键词的模板包
-fetch('/api/bazaar/getBazaarTemplate', {
-  method: 'POST',
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': 'Token YOUR_API_TOKEN' // 替换为你的 API Token
-  },
-  body: JSON.stringify({ keyword: "report" })
-})
-// ... 后续处理同上
+```json
+{
+  "code": -1,
+  "msg": "获取模板列表失败",
+  "data": null
+}
 ```
 
+## 错误码说明
 
-> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/bazaar.go](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/bazaar.go) 中的源码为准。
-> 
-> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
-> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/) 中的源码为准。
-> 
-> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
+| 错误码 | 说明 |
+| --- | --- |
+| 0 | 成功 |
+| 1 | 安装失败 |
+| -1 | 服务器错误 |
+
+## 备注
+
+- 返回的模板列表会根据用户当前安装状态显示 `installed` 和 `hasUpdate` 标记
+- 搜索是模糊匹配,会在模板名称、描述、作者等字段中查找关键词
+- 如果要获取已安装的模板列表,请使用 `/api/bazaar/getInstalledTemplate` 接口
+- 模板安装后可以在新建文档时直接使用
+
+
