@@ -44,3 +44,32 @@
 
 *   **getBlockInfo.md**: 核对了 `block.go` 源码，修正了文档中的返回值描述 (补充 `type` 字段和错误情况)，更新了示例，添加了请求方法和错误码说明。
 *   **getBlockDOM.md**: 核对了 `block.go` 源码。**重要发现**：通过搜索 `siyuan/app/src/` 目录 (包括精确搜索)，未找到前端代码直接调用 `/api/block/getBlockDOM` 的示例。推测前端可能通过其他方式获取 DOM 或此 API 主要面向第三方。据此修正了文档，特别是失败时的 `data` 结构，并添加了相应说明。 
+
+### 2025-05-12 21:42:50 UTC (织)
+
+*   **修改 `getBlockDOM.md`**:
+    *   移除了文件末尾的版权信息 `© 2024 思源笔记 API 文档 (社区维护)`。
+    *   在示例代码后添加了在线 API 测试所需的 HTML 结构（表单、输入框、按钮、结果展示区域）。
+    *   提供了实现该在线测试功能的 JavaScript 代码片段，该代码负责获取输入、调用 API 并显示结果。建议将此 JS 代码集成到共享的 `api-tester.js` 文件中以供复用。 
+
+### 2025-05-12 22:06:20 UTC (织)
+
+*   **新增 `ApiTester.vue` 组件**: 在 `docs/.vitepress/theme/components/` 目录下创建了可复用的 Vue 组件 `ApiTester.vue`，用于提供统一的 API 在线测试体验。
+    *   **功能**: 包含 API Token 和服务器地址的配置（保存到 localStorage）、动态参数表单生成、请求发送、请求/响应展示、加载状态和错误处理。
+    *   **修复**: 解决了初始化时 `props.params` 未定义导致 `forEach` 报错的问题，将表单值初始化逻辑移入 `onMounted`。
+*   **修改 `getBlockDOM.md`**: 
+    *   移除了之前添加的原始 HTML 和 JS 测试代码。
+    *   引入并使用了新的 `<ApiTester>` 组件来提供在线测试功能。
+    *   **修复**: 修正了使用 `<ApiTester>` 时缺少必需的 `endpoint` 和 `params` prop 的 Vue 警告，为其传递了正确的 API 端点和参数定义。 
+
+### 2025-05-12 22:07:58 UTC (织)
+
+*   **修改 `ApiTester.vue` 组件**:
+    *   **修复**: 解决了在 `sendRequest` 函数中，点击发送请求时偶尔出现的 `props.params` 为 `undefined` 导致 `forEach` 报错的问题。
+    *   **操作**: 在 `sendRequest` 函数开头增加了对 `props.params` 的有效性检查（确保其存在且为数组），如果无效则提前返回并显示错误信息。 
+
+### 2025-05-12 22:10:08 UTC (织)
+
+*   **修改 `getBlockDOM.md`**:
+    *   **增加**: 在"在线测试"标题前添加了一个使用 VitePress `danger` 容器的警告框。
+    *   **内容**: 警告用户不要在不完全信任的网站或工具中输入 API Token，强调其安全风险，并说明本文档站点在线测试的相对安全性。 

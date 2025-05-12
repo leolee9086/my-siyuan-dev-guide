@@ -1,5 +1,5 @@
 ---
-title: 获取块 DOM (`/api/block/getBlockDOM`)
+title: 获取块 DOM (getBlockDOM)
 ---
 
 > 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/) 中的源码为准。
@@ -112,3 +112,25 @@ Authorization: Token your-api-token
 *   返回的 `dom` 字符串是块在思源笔记编辑器中渲染后的 HTML 表示，包含了块的属性、内容和结构。
 *   可以用于获取块的最新渲染结果，例如在外部应用中展示块内容。
 
+::: danger 警告：API Token 安全
+请**绝对不要**在任何您不完全信任的网站或第三方工具中输入您的思源笔记 API Token。
+API Token 拥有与您账户相同的权限，泄露可能导致数据被恶意访问或修改。
+此文档站点的在线测试功能是在浏览器本地处理 Token 并直接与您的本地思源实例通信，相对安全，但仍需谨慎。
+你可以使用一个专门的测试笔记本或者自行编写测试以保证安全
+:::
+
+## 在线测试
+
+
+<script setup>
+import apiTester from "@theme/components/ApiTester.vue"
+</script>
+<ClientOnly>
+<apiTester
+  title='测试 getBlockDOM'
+  endpoint='/api/block/getBlockDOM'
+  :params="[
+    { name: 'id', label: '块 ID', type: 'string', required: true, description: '需要获取 DOM 的块 ID。' }
+  ]"
+/>
+</ClientOnly>
