@@ -76,8 +76,9 @@ title: 设置导出配置
 API Token: (从思源"设置-关于"中获取)  
 
 请求参数 (Export JSON 对象):  
+```json
 { "paragraphBeginningSpace": false, "addTitle": true, "blockRefMode": 4, "blockEmbedMode": 1, "blockRefTextLeft": "", "blockRefTextRight": "", "tagOpenMarker": "#", "tagCloseMarker": "#", "fileAnnotationRefMode": 0, "pandocBin": "", "markdownYFM": false, "pdfFooter": "%page / %pages", "docxTemplate": "", "pdfWatermarkStr": "", "pdfWatermarkDesc": "", "imageWatermarkStr": "", "imageWatermarkDesc": "" }
-
+```
 从 /api/system/getConf 加载当前导出配置 发送请求
 
 响应:

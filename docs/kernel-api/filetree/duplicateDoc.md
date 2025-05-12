@@ -53,7 +53,7 @@ Authorization: Token your-token
 
 ### 返回示例
 
-```
+```json
 {
   "code": 0,
   "msg": "",

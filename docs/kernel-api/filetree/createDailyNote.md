@@ -9,7 +9,10 @@ title: 创建每日笔记 (createDailyNote)
 
 本接口用于创建或打开今天的每日笔记文档。如果文档已存在，将返回现有文档的 ID；如果不存在，则会根据笔记本的每日笔记设置创建新文档，然后返回新创建文档的 ID。
 
-每日笔记的创建路径由笔记本配置中的 `dailyNoteSavePath` 模板决定，默认值为 `/daily note/{{now | date "2006/01"}}/{{now | date "2006-01-02"}}`。
+每日笔记的创建路径由笔记本配置中的 `dailyNoteSavePath` 模板决定，默认值为 
+```go
+/daily note/{{now | date "2006/01"}}/{{now | date "2006-01-02"}}
+```
 
 ## 请求参数
 
@@ -89,14 +92,3 @@ title: 创建每日笔记 (createDailyNote)
 -   API 处理函数：`siyuan/kernel/api/filetree.go`（函数 `createDailyNote`）
 -   模型层实现：`siyuan/kernel/model/file.go`（函数 `CreateDailyNote`）
 
-> 注意：这是一个社区维护的文档，可能与官方最新版本存在差异。
-> 
-> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
-
-© 2024 社区贡献者们. [本文档源码](https://github.com/siyuan-note/siyuan-kernelApi-docs)
-> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/bazaar.go](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/bazaar.go) 中的源码为准。
-> 
-> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
-> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/) 中的源码为准。
-> 
-> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)

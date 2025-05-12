@@ -54,7 +54,7 @@ title: 获取笔记本配置
 | refCreateSavePath | string | 当通过块引用创建新文档时，默认保存到的目标路径模板。 |
 | docCreateSaveBox | string | 当直接新建文档时，默认保存到的目标笔记本 ID。如果为空，则保存在当前笔记本。 |
 | docCreateSavePath | string | 当直接新建文档时，默认保存到的目标路径模板。 |
-| dailyNoteSavePath | string | 新建日记时默认的保存路径模板。例如：`/daily note/{{now | date "2006/01"}}/{{now | date "2006-01-02"}}` |
+| dailyNoteSavePath | string | 新建日记时默认的保存路径模板。例如：`/daily note/\{\{now \| date "2006/01"\}\}/\{\{now \| date "2006-01-02"\}\}` |
 | dailyNoteTemplatePath | string | 新建日记时使用的模板文档路径。 |
 | sortMode | number | 文档列表的排序方式。具体值请参考 `kernel/util/sort.go` 中的 `SortMode*` 常量定义，例如 0 (文件名升序), 6 (自定义排序) 等。 |
 
@@ -88,7 +88,7 @@ title: 获取笔记本配置
       "refCreateSavePath": "",
       "docCreateSaveBox": "",
       "docCreateSavePath": "",
-      "dailyNoteSavePath": "/daily note/{{now | date "2006/01"}}/{{now | date "2006-01-02"}}"
+      "dailyNoteSavePath": "\/daily note\/\{\{now \| date \"2006/01\"\}\}\/\{\{now \| date \"2006-01-02\"\}\}"
     }
   }
 }
@@ -103,13 +103,3 @@ title: 获取笔记本配置
   "data": null
 }
 ```
-
-> 注意：这是一个社区维护的文档，可能与官方最新版本存在差异。
-> 
-> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
-> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/bazaar.go](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/bazaar.go) 中的源码为准。
-> 
-> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
-> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/) 中的源码为准。
-> 
-> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)

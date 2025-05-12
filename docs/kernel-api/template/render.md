@@ -21,7 +21,7 @@ title: 渲染模板
 | --- | --- | --- | --- |
 | path | string | 是 | 模板文件的绝对路径。 |
 | data | string | 是 | 用于渲染模板的 JSON 字符串数据。 |
-| id | string | 否 | 关联的块 ID，用于模板内部获取上下文信息（例如 \`{{.Block.ID}}\`）。 |
+| id | string | 否 | 关联的块 ID，用于模板内部获取上下文信息（例如 `\{\{.Block.ID\}\}`）。 |
 
 ## 返回值
 
@@ -54,12 +54,12 @@ curl -X POST \
 假设 \`my\_template.md\` 内容为：
 
 ```
-你好，{{.name}}！当前版本是 {{.version}}。关联块ID：{{.Block.ID}}
+你好，\{\{.name\}\}！当前版本是 \{\{.version\}\}。关联块ID：\{\{.Block.ID\}\}
 ```
 
 ### 返回示例
 
-```
+```json
 {
     "code": 0,
     "msg": "",

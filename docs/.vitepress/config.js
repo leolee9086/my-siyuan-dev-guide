@@ -1,17 +1,32 @@
-// import { generateSidebar } from 'vitepress-sidebar'; // Comment out or remove static import
+export default async () => {
+  const { generateSidebar } = await import('vitepress-sidebar');
 
-export default async () => { // Make the default export an async function
-  const { generateSidebar } = await import('vitepress-sidebar'); // Use dynamic import
+  const sidebar = generateSidebar([
+    {
+      documentRootPath: 'docs', 
+      scanStartPath: 'kernel-api', 
+      resolvePath: '/kernel-api/', 
+      useTitleFromFrontmatter: true, 
+      collapsed: true, 
+      hyphenToSpace: true, 
+      excludePattern: ['index.md', 'AInote.md']
+    }
+  ]);
 
   return {
     lang: 'zh-CN',
     title: '思源笔记开发文档',
     description: '思源笔记开发者文档和指南。',
     base: '/my-siyuan-dev-guide/',
-    
-    // 忽略特定文件以避免构建错误
     ignoreDeadLinks: true,
     srcExclude: ['**/AInote.md'],
+
+    // 配置 Vue 编译器选项，更改插值分隔符
+    vue: {
+      compilerOptions: {
+        delimiters: ['${', '}'] // 将分隔符改为 ${ 和 }
+      }
+    },
 
     themeConfig: {
       nav: [
@@ -32,17 +47,7 @@ export default async () => { // Make the default export an async function
             }
           ],
           // Kernel API 的侧边栏使用 vitepress-sidebar 自动生成
-          ...generateSidebar([
-            {
-              documentRootPath: 'docs', 
-              scanStartPath: 'kernel-api', 
-              resolvePath: '/kernel-api/', 
-              useTitleFromFrontmatter: true, 
-              collapsed: true, 
-              hyphenToSpace: true, 
-              excludePattern: ['index.md', 'AInote.md']
-            }
-          ])
+          ...sidebar
         },
 
         editLink: {
@@ -55,4 +60,5 @@ export default async () => { // Make the default export an async function
       }
     }
   };
+
 

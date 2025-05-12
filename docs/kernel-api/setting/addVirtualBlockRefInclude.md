@@ -5,7 +5,7 @@ title: 思源笔记 Kernel
 
 /api/setting/addVirtualBlockRefInclude
 
-![Logo](../logo.png)
+
 
 # 思源笔记 Kernel API
 

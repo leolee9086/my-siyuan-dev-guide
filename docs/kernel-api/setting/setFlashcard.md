@@ -62,14 +62,12 @@ title: 设置闪卡配置
 API Token: (从思源"设置-关于"中获取)  
 
 请求参数 (Flashcard JSON 对象):  
+```json
 { "newCardLimit": 20, "reviewCardLimit": 200, "mark": true, "list": true, "superBlock": true, "heading": true, "deck": false, "reviewMode": 0, "requestRetention": 0.9, "maximumInterval": 36500, "weights": "" }
-
+```
 从 /api/system/getConf 加载当前闪卡配置 发送请求
 
 响应:
-> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/bazaar.go](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/bazaar.go) 中的源码为准。
-> 
-> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
 > 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/) 中的源码为准。
 > 
 > 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
