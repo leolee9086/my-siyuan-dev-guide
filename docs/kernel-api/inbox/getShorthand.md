@@ -77,12 +77,3 @@ Authorization: Token YOUR_API_TOKEN_IF_REQUIRED
 > -   此接口的认证要求待确认 (通过检查 `router.go` 或通用 API 指南)。请求示例中暂时加入了 `Authorization` 头作为通用提醒。
 > -   `data` 对象中返回的具体字段依赖于后端 `model.CloudShorthand` 的定义，上述示例仅为推测的常见字段。
 > 
-> 注意：这是一个社区维护的文档，可能与官方最新版本存在差异。
-> 
-> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
-> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/bazaar.go](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/bazaar.go) 中的源码为准。
-> 
-> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
-> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/) 中的源码为准。
-> 
-> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)

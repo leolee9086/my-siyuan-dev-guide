@@ -39,3 +39,8 @@
         1.  保留了原有的 `class="important-note"` 的 `<blockquote>` 及其内容（社区维护提示和非标准赞助链接）。
         2.  在 `<footer>` 标签之前，额外插入了标准的赞助链接 `<blockquote>` 区块。此区块包含规范的文本内容（"本文档由 AI 织 协助编写..."）、指向 `https://afdian.com/a/leolee9086?tab=feed` 的链接，并应用了 `style="text-align: right; font-size: small;"` 样式。
     *   **目的**: 确保页面符合 `check_sponsorship.js` 的校验标准，同时保留了原有的重要提示信息。 
+
+## API 核对与前端用法发现 (织)
+
+*   **getBlockInfo.md**: 核对了 `block.go` 源码，修正了文档中的返回值描述 (补充 `type` 字段和错误情况)，更新了示例，添加了请求方法和错误码说明。
+*   **getBlockDOM.md**: 核对了 `block.go` 源码。**重要发现**：通过搜索 `siyuan/app/src/` 目录 (包括精确搜索)，未找到前端代码直接调用 `/api/block/getBlockDOM` 的示例。推测前端可能通过其他方式获取 DOM 或此 API 主要面向第三方。据此修正了文档，特别是失败时的 `data` 结构，并添加了相应说明。 
