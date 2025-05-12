@@ -51,7 +51,7 @@ export default async () => {
         },
 
         editLink: {
-          pattern: 'https://github.com/leolee9086/my-siyuan-dev-guide/edit/main/docs/:path',
+          pattern: 'https://github.com/leolee9086/my-siyuan-dev-guide/edit/master/docs/:path',
           text: '在 GitHub 上编辑此页'
         },
 
