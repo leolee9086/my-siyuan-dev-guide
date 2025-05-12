@@ -28,7 +28,7 @@ features:
     details: 学习如何通过 HTTP 与思源笔记内核进行交互，探索各种可能性。
     link: /kernel-api/ # Kernel API 和 HTTP API 指向同一处
   - title: 实践总结 (个人看法)
-    details: 我在开发过程中总结的一些主观的"最佳实践"，欢迎交流探讨，不代表官方观点。
+    details: 开发过程中的一些小经验，欢迎交流探讨，不代表官方观点。
     link: /guide/best-practices
 ---
 
