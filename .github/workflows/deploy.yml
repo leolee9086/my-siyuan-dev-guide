@@ -59,6 +59,11 @@ jobs:
       - name: Build
         run: pnpm run docs:build
       
+      - name: Copy .nojekyll
+        run: |
+          cp .nojekyll docs/.vitepress/dist/ || echo "Creating .nojekyll file" 
+          touch docs/.vitepress/dist/.nojekyll
+      
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
