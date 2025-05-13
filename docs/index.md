@@ -21,9 +21,6 @@ hero:
       link: /kernel-api/
 
 features:
-  - title: 快速上手 (个人心得)
-    details: 我在配置开发环境、参与贡献或开发插件/挂件过程中的一些个人经验分享。
-    link: /guide/getting-started
   - title: Kernel API (HTTP)
     details: 学习如何通过 HTTP 与思源笔记内核进行交互，探索各种可能性。
     link: /kernel-api/

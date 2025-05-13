@@ -33,7 +33,6 @@ export default async () => {
         { text: '首页', link: '/' },
         { text: '指南', link: '/guide/' },
         { text: '文档首页', link: '/guide/' }, // 指向所有卡片的概览页
-        { text: '快速上手', link: '/guide/best-practices.md' }, // 对应“快速上手 (个人心得)”
         { text: 'Kernel API', link: '/kernel-api/' }, // 对应“Kernel API (HTTP)”
         { text: '插件开发', link: '/guide/plugins.md' }, // 对应“插件开发指南”
         { text: '挂件开发', link: '/guide/widgets.md' }, // 对应“挂件开发指南”

@@ -119,10 +119,14 @@ export async function handleInstallSnippet(config, snippetName, cssCode, existin
     }
     
     await fetchSiyuanRequest(config, '/api/snippet/setSnippet', 'POST', { snippets: [...jsSnippets, ...cssSnippets] });
+    // 安装或更新成功后，调用 reloadUI 使更改生效
+    await fetchSiyuanRequest(config, '/api/ui/reloadUI', 'POST', {});
 }
 
 export async function handleUninstallSnippet(config, snippetIdToUninstall) {
     await fetchSiyuanRequest(config, '/api/snippet/removeSnippet', 'POST', { id: snippetIdToUninstall });
+    // 卸载成功后，调用 reloadUI 使更改生效
+    await fetchSiyuanRequest(config, '/api/ui/reloadUI', 'POST', {});
 }
 
 export async function handleToggleSnippetEnable(config, snippetId, snippetName, targetEnabledState) {
@@ -133,6 +137,8 @@ export async function handleToggleSnippetEnable(config, snippetId, snippetName, 
     if (snippetIndex > -1) {
         allSnippets[snippetIndex].enabled = targetEnabledState;
         await fetchSiyuanRequest(config, '/api/snippet/setSnippet', 'POST', { snippets: allSnippets });
+        // 切换启用状态成功后，调用 reloadUI 使更改生效
+        await fetchSiyuanRequest(config, '/api/ui/reloadUI', 'POST', {});
     } else {
         throw new Error(`片段 "${snippetName}" (ID: ${snippetId}) 未找到，无法切换启用状态。请尝试刷新页面或重试。`);
     }

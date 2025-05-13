@@ -87,3 +87,20 @@ Authorization: Token your-api-token
 }
 ```
 
+## 在线测试
+
+<script setup>
+import apiTester from "@theme/components/ApiTester.vue"
+</script>
+<ClientOnly>
+<apiTester
+  title='测试 appendDailyNoteBlock'
+  endpoint='/api/block/appendDailyNoteBlock'
+  :params="[
+    { name: 'notebook', label: '笔记本 ID', type: 'string', required: true, description: '目标笔记本的 ID。' },
+    { name: 'data', label: '内容数据', type: 'string', required: true, description: '要追加的内容块数据 (Markdown 或 DOM 字符串)。' },
+    { name: 'dataType', label: '数据类型', type: 'string', required: true, description: 'data 参数的数据类型，可选值为 \'markdown\' 或 \'dom\'。' }
+  ]"
+/>
+</ClientOnly>
+

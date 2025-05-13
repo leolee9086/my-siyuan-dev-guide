@@ -153,6 +153,12 @@ package.zip
 5.  **自动更新**:
     *   社区集市仓库 (`siyuan-note/bazaar`) 会通过 GitHub Actions 定期（通常每小时）自动检查所有已收录仓库的最新 Release，更新索引并部署。你可以在 [bazaar/actions](https://github.com/siyuan-note/bazaar/actions) 页面查看部署状态。
 
+### 高级部署与开发技巧
+
+除了标准的打包和集市发布流程，这里还提供一些额外的部署方式和开发技巧：
+
+*   [通过外部页面部署挂件](./widget-dev/deploying-from-external-page.md)
+
 ---
 
 ## 挂件的渲染与交互

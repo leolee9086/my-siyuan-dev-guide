@@ -73,3 +73,14 @@
 *   **修改 `getBlockDOM.md`**:
     *   **增加**: 在"在线测试"标题前添加了一个使用 VitePress `danger` 容器的警告框。
     *   **内容**: 警告用户不要在不完全信任的网站或工具中输入 API Token，强调其安全风险，并说明本文档站点在线测试的相对安全性。 
+
+## 2024-07-27 (由织补充)
+
+-   **文件**: `appendDailyNoteBlock.md`
+-   **修改**:
+    -   在文档末尾添加了 "在线测试" 区块。
+    -   该区块使用 `<apiTester>` Vue 组件，允许用户在浏览器中直接测试 `/api/block/appendDailyNoteBlock` API。
+    -   提供了 `notebook`, `data`, `dataType` 三个参数的输入字段和描述。
+-   **原因**:
+    -   根据用户要求，模仿 `getBlockDOM.md` 的方式为 `appendDailyNoteBlock.md` 添加交互式测试功能。
+    -   优化文档，使其更易于理解和使用该 API。 

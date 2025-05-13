@@ -279,3 +279,82 @@
 - **原因**: 方便用户在阅读 CSS 片段指南时，快速查阅相关的核心 API 文档。
 
 ---
+
+## [2025-05-14 01:52 织] - 补充挂件外部署方式文档
+
+- **新增文件夹**: `my-siyuan-dev-guide/docs/guide/widget-dev/`
+  - **目的**: 为各种挂件开发相关的技巧、代码片段或高级主题提供一个集中的存放位置，使其不仅仅局限于单一主题。
+- **新增文档**: `my-siyuan-dev-guide/docs/guide/widget-dev/deploying-from-external-page.md`
+  - **内容**: 详细说明了如何通过外部 HTML 页面配合 JavaScript 调用思源笔记的 `/api/file/putFile` API 来实现挂件的动态部署。文档内容包括：
+    - 此方式的适用场景（开发调试、批量部署、自定义流程）。
+    - 核心原理（基于 `/api/file/putFile`）。
+    - 所需信息（思源 URL、API Token）。
+    - 前端实现步骤（参考 `tinySiyuanWidgets` 项目中的 `deployWidget` 函数），包括获取用户输入、确定文件列表、遍历上传每个文件（读取文件、创建 Blob 和 FormData、发送 API 请求、处理响应）、提供状态反馈。
+    - 重要的安全警告，强调 API Token 的安全使用和临时 Token 建议。
+    - 指向 `tinySiyuanWidgets` 项目作为示例参考。
+  - **目的**: 响应用户要求，为思源挂件开发者提供一种通过外部页面进行部署的详细指南。
+- **修改文档**: `my-siyuan-dev-guide/docs/guide/widgets.md`
+  - **变更**: 在 "上架集市" 章节之后、"挂件的渲染与交互" 章节之前，新增了 `### 高级部署与开发技巧` 小节。
+  - **内容**: 在新小节下添加了一个链接 `* [通过外部页面部署挂件](./widget-dev/deploying-from-external-page.md)`，指向新创建的外部署指南文档。
+  - **目的**: 在主挂件指南中提供入口，方便开发者发现和查阅更高级或非标准的部署与开发技巧。
+- **总体原因**:
+  - 满足用户关于补充"从外部页面调用挂件安装方式"的文档需求。
+  - 通过创建 `widget-dev` 文件夹，为未来积累和组织更多样的挂件开发技巧和深入主题打下良好基础，提高开发指南的全面性和实用性。
+
+---
+
+## [2025-05-14 01:56 织] - 更新外部署文档中的示例链接
+
+- **修改文档**: `my-siyuan-dev-guide/docs/guide/widget-dev/deploying-from-external-page.md`
+  - **变更**: 在 "示例参考" 部分，将对 `tinySiyuanWidgets` 项目的引用更新为一个更具体的链接。
+  - **内容**: 将原来的文本 "具体的实现可以参考开源项目 `tinySiyuanWidgets` 的主页面 `index.html` 中的 `deployWidget` JavaScript 函数。" 修改为 "具体的实现可以参考开源项目 [思源笔记小挂件集合 (tinySiyuanWidgets)](https://leolee9086.github.io/tinySiyuanWidgets/)。其主页面（通常是 `index.html`，源码可以在其 GitHub 仓库，例如 [leolee9086/tinySiyuanWidgets](https://github.com/leolee9086/tinySiyuanWidgets) 找到）中的 `deployWidget` JavaScript 函数展示了这种部署方式。"
+  - **目的**: 用户提供了 `tinySiyuanWidgets` 项目的实际在线地址 ([https://leolee9086.github.io/tinySiyuanWidgets/](https://leolee9086.github.io/tinySiyuanWidgets/))，将其更新到文档中可以为读者提供更直接、更有用的参考示例。
+
+---
+
+## 2025-05-14 01:52 织 - 更新 HTML 块渲染说明
+
+- **修改文件**: `my-siyuan-dev-guide/docs/guide/other-extensions.md`
+- **变更**: 
+    - 详细解释了思源笔记中 HTML 块的渲染机制。
+    - **`htmlRender.ts`**: 说明了此文件中的 `htmlRender` 函数如何识别 HTML 块 (通过 `data-type=\"NodeHTMLBlock\"`) 并为这些块的 UI 元素（编辑、更多按钮）添加 `aria-label` 以增强可访问性。
+    - **`<protyle-html>` Web Component (`protyle-html.js`)**: 
+        - 描述了此 Web Component 如何使用 Shadow DOM 来隔离和渲染 HTML 内容。
+        - 解释了 `data-content` 属性的用途，以及构造函数中通过 `Lute.EscapeHTMLStr` 进行的初始内容处理。
+        - 详细说明了 `attributeChangedCallback` 中的逻辑：
+            - 使用 `Lute.UnEscapeHTMLStr` 反转义内容。
+            - 根据 `window.siyuan.config.editor.allowHTMLBLockScript` 配置（默认为 false，即不允许脚本），使用 `DOMPurify.sanitize()` 清理 HTML 以防止 XSS。
+            - 特殊处理 `<script>` 标签：对包含 `document.write` 的脚本显示错误信息；对其他脚本，则创建新的 `<script>` 元素并将其附加到 Shadow DOM 中执行。
+    - 包含了 `htmlRender.ts` 和 `protyle-html.js` 中关键逻辑的代码示例。
+- **原因**: 响应哥哥的要求，参考 `htmlRender.ts` 和 `protyle-html.js` 源码，为开发者提供关于思源 HTML 块渲染、安全处理和脚本执行的详细技术说明。
+
+---
+
+## 2025-05-14 织 (补充 HTML 块内脚本获取块 ID 的方法)
+
+- **修改文件**: `my-siyuan-dev-guide/docs/guide/other-extensions.md`
+- **变更**:
+    - 在"HTML 内容的实际渲染与管理"章节之后，"示例"章节之前，新增了"### 3. 在 HTML 块内脚本中获取块 ID"小节。
+    - **解释了工作原理**: 说明了如何通过 `document.currentScript` (在 Shadow DOM 内的脚本元素) -> `.getRootNode().host` (获取到 `<protyle-html>` 元素) -> `.closest('[data-node-id]')` (查找到包含 ID 的父块元素) 的步骤来获取块 ID。
+    - **提供了函数示例**: 给出了一个名为 `getSiyuanBlockId()` 的 JavaScript 函数，可以直接在 HTML 块的 `<script>` 中使用。
+    - **提供了用法示例**: 包含了一个完整的 HTML 代码块，演示了如何调用 `getSiyuanBlockId()` 函数，并将获取到的块 ID 显示在 HTML 块内部，方便用户直接复制粘贴到思源笔记中测试效果。
+    - **添加了注意事项**: 强调了此方法对 `document.currentScript` 的依赖性，以及在异步或极简 HTML 结构中可能需要注意的问题。
+- **原因**: 响应哥哥的要求，为开发者提供一种在 HTML 块内部通过 JavaScript 获取其自身所在思源块 `data-node-id` 的实用方法和示例代码。
+
+---
+
+## 2025-05-14 织 (再次大幅修正"在 HTML 块内脚本中获取块 ID"的方法)
+
+- **修改文件**: `my-siyuan-dev-guide/docs/guide/other-extensions.md`
+- **变更**:
+    - 在"HTML 内容的实际渲染与管理"章节之后，"示例"章节之前，新增了"### 3. 在 HTML 块内脚本中获取块 ID"小节。
+    - **解释了工作原理**: 说明了如何通过 `document.currentScript` (在 Shadow DOM 内的脚本元素) -> `.getRootNode().host` (获取到 `<protyle-html>` 元素) -> `.closest('[data-node-id]')` (查找到包含 ID 的父块元素) 的步骤来获取块 ID。
+    - **提供了函数示例**: 给出了一个名为 `getSiyuanBlockId()` 的 JavaScript 函数，可以直接在 HTML 块的 `<script>` 中使用。
+    - **提供了用法示例**: 包含了一个完整的 HTML 代码块，演示了如何调用 `getSiyuanBlockId()` 函数，并将获取到的块 ID 显示在 HTML 块内部，方便用户直接复制粘贴到思源笔记中测试效果。
+    - **添加了注意事项**: 强调了此方法对 `document.currentScript` 的依赖性，以及在异步或极简 HTML 结构中可能需要注意的问题。
+    - **关键更正**: 根据用户 leolee 提供的更优思路，废弃了之前直接在脚本内查找的方式。新方法采用定义一个自定义元素 `<siyuan-script-runner>`，该元素通过一个健壮的 `findHostBlock` 辅助函数（递归查找 `element.host` 和 `element.parentNode`）来定位其所在的思源块。然后，`<siyuan-script-runner>` 会执行其内部的特定类型脚本（如 `<script type="text/siyuan-scope">`），并将找到的宿主块元素 `hostBlock` 和块 ID `blockId` 注入到该脚本的作用域中。文档已更新为包含此自定义元素的完整定义和用法示例。
+    - **后续改进 (同日)**: 进一步优化了 `<siyuan-script-runner>` 内的示例用户脚本。为了避免直接操作 `document.body` 或 Shadow Root，现在 `<siyuan-script-runner>` 元素实例本身 (`runnerElement`) 会被传递给用户脚本。示例脚本中创建的元素会通过 `runnerElement.appendChild(p)` 直接附加到 `<siyuan-script-runner>` 内部，使得输出位置更清晰和受控。
+    - 修改日期: 2025-05-13
+- **原因**: 响应哥哥的要求，为开发者提供一种在 HTML 块内部通过 JavaScript 获取其自身所在思源块 `data-node-id` 的实用方法和示例代码。
+
+---
