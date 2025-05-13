@@ -8,39 +8,15 @@ CSS 代码片段 (Code Snippet) 是思源笔记提供的一种轻量级界面定
 
 ## 如何管理
 
-*   **入口**: 你可以在 "设置" -> "外观" -> "代码片段" 区域找到管理界面。
-*   **操作**: 在这里，你可以添加新的 CSS 片段、编辑现有片段、为片段命名、启用或禁用特定片段，以及启用或禁用所有 CSS 片段的总开关。
-*   **存储**: 这些片段的内容由思源笔记在本地负责存储和管理。
+详细的管理方式请参考：**[CSS 代码片段管理](./css-snippets/css-management.md)**
 
 ## 加载机制
 
-当思源启动或相关设置更新时，前端会：
-1.  通过内部 API (`/api/snippet/getSnippet`) 获取所有已保存且标记为启用的 CSS 片段内容。
-2.  检查 CSS 片段的总开关 (`window.siyuan.config.snippet.enabledCSS`) 是否开启。
-3.  如果总开关开启且片段自身也启用，则将该段 CSS 代码动态地创建一个 `<style>` 标签（例如 `<style id="snippetCSS{片段ID}">...</style>`）。
-4.  将这个 `<style>` 标签插入到当前 HTML 文档的 `<head>` 元素中。
+CSS 片段的加载方式和相关 API 介绍请参考：**[CSS 代码片段加载机制](./css-snippets/css-loading-mechanism.md)**
 
-除了通过思源笔记的图形用户界面管理代码片段外，开发者还可以通过一组后端 API 来以编程方式获取、创建、更新和删除代码片段。这对于批量操作、自动化或与其他工具集成非常有用。
+## 作用域与主要用途
 
-相关的 API 文档如下：
-
-*   **获取代码片段**: [`/api/snippet/getSnippet`](../kernel-api/snippet/getSnippet.md) - 用于检索已存在的代码片段列表，可按类型、启用状态和关键词过滤。
-*   **设置代码片段**: [`/api/snippet/setSnippet`](../kernel-api/snippet/setSnippet.md) - 用于创建新片段或（全量）更新现有片段列表。
-*   **移除代码片段**: [`/api/snippet/removeSnippet`](../kernel-api/snippet/removeSnippet.md) - 用于根据 ID 删除特定的代码片段。
-
-请注意，特别是 `/api/snippet/setSnippet` API 执行的是全量替换操作，使用时请务必仔细阅读其文档说明，以避免意外丢失数据。
-
-## 作用域
-
-由于 CSS 片段是通过 `<style>` 标签直接插入到 `<head>` 中的，它们的**作用域是全局的**。这意味着你编写的 CSS 规则会影响整个思源笔记的界面。
-
-## 主要用途
-
-*   **微调主题**: 对当前使用的主题进行细节调整。
-*   **修改元素样式**: 改变特定界面元素（如按钮、面板、字体）的大小、颜色、边距等。
-*   **隐藏元素**: 使用 `display: none;` 隐藏你不需要的界面元素。
-*   **引入自定义字体**: 使用 `@font-face` 规则引入本地或网络字体。
-*   **覆盖样式**: 覆盖主题或插件提供的某些现有样式。
+关于 CSS 片段的全局作用域及其常见应用场景，请参考：**[CSS 代码片段的作用域与主要用途](./css-snippets/css-scope-and-usecases.md)**
 
 ## 局限性
 
@@ -57,17 +33,4 @@ CSS 代码片段 (Code Snippet) 是思源笔记提供的一种轻量级界面定
 
 ## 示例
 
-::: code-group
-```css [让所有的div变成红色]
-div{
-    color:red
-}
-```
-```json [snippet-meta]
-{
-    "type":"css",
-    "id":"from-leolee9086-test1",
-    "name":"全部div变红"
-}
-```
-:::
+更多示例请参考：**[CSS 代码片段示例](./css-snippets/css-snippet-examples.md)**

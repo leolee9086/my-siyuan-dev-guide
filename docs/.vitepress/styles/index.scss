@@ -43,4 +43,101 @@ body {
     width: var(--vp-code-copy-icon-size, 18px); // Use VitePress variable if available, else fallback
     height: var(--vp-code-copy-icon-size, 18px);
     fill: currentColor;
-} 
+}
+
+// Custom styles for Siyuan snippet interaction buttons
+.snippet-toolbar {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 8px;
+  padding: 8px 0; // Add some padding above/below the toolbar
+  margin-left: 0; // Reset any potential inherited margin
+  margin-bottom: 8px; // Space below the toolbar before the code
+}
+
+.snippet-btn {
+  display: inline-flex;
+  align-items: center;
+  padding: 4px 10px;
+  font-size: 0.8rem;
+  font-weight: 500;
+  border-radius: 6px;
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.2s ease-in-out;
+  text-decoration: none !important; // Ensure no underline from themes
+  white-space: nowrap;
+
+  &:hover {
+    opacity: 0.85;
+  }
+
+  &:disabled {
+    cursor: not-allowed;
+    opacity: 0.6;
+  }
+}
+
+// Specific button types - feel free to adjust colors
+// Using VitePress CSS variables for better theme consistency where possible
+
+.snippet-btn-install,
+.snippet-btn-enable {
+  background-color: var(--vp-c-green-soft);
+  color: var(--vp-c-green-darker);
+  border-color: var(--vp-c-green-dimm-1);
+  &:hover {
+    background-color: var(--vp-c-green-dimm-1);
+  }
+}
+
+.snippet-btn-uninstall,
+.snippet-btn-disable {
+  background-color: var(--vp-c-red-soft);
+  color: var(--vp-c-red-darker);
+  border-color: var(--vp-c-red-dimm-1);
+  &:hover {
+    background-color: var(--vp-c-red-dimm-1);
+  }
+}
+
+.snippet-btn-sync {
+  background-color: var(--vp-c-yellow-soft);
+  color: var(--vp-c-yellow-darker);
+  border-color: var(--vp-c-yellow-dimm-1);
+  &:hover {
+    background-color: var(--vp-c-yellow-dimm-1);
+  }
+}
+
+.snippet-btn-config,
+.snippet-btn-retry {
+  background-color: var(--vp-c-gray-soft);
+  color: var(--vp-c-gray-darker);
+  border-color: var(--vp-c-gray-dimm-1);
+  &:hover {
+    background-color: var(--vp-c-gray-dimm-1);
+  }
+}
+
+.snippet-status-error {
+  color: var(--vp-c-red-dark);
+  font-size: 0.8rem;
+  padding: 4px 0;
+}
+
+// Ensure the toolbar sits nicely relative to the copy button
+// VitePress copy button is usually in a div with class 'top' or similar.
+// We might need to adjust this if the structure changes.
+// For now, assuming .snippet-toolbar is inserted correctly relative to it.
+// If the copy button is inside the toolbar, the flex gap will handle spacing.
+// If it's a sibling, we might need to ensure the container div allows flex.
+
+// Example: If toolbar and copy button are direct children of div.language-css
+// and we want them on the same line:
+// div.language-css > div:has(button.copy), div.language-css > .snippet-toolbar {
+//   display: inline-block; /* or flex items if parent is flex */
+// }
+
+// The current JS logic for inserting the toolbar tries to put it after the copy button's parent or as first child.
+// The flex properties on .snippet-toolbar itself should manage its internal children. 

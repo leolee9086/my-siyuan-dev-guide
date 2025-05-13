@@ -2,6 +2,7 @@ import DefaultTheme from 'vitepress/theme'
 import { onMounted, watch, nextTick, createApp, h } from 'vue'
 import { useRoute } from 'vitepress'
 import SiyuanConfigModal from './components/SiyuanConfigModal.vue'
+import { enhanceCodeBlocks } from './utils/uiEnhancements'
 
 // Import our main SCSS file that includes Siyuan SCSS.
 // Path is relative to this file (.vitepress/theme/index.js)
@@ -568,30 +569,18 @@ export default {
         }
     }
 
-    function enhanceCodeBlocks() {
-      if (typeof window === 'undefined') return;
-      nextTick(() => {
-        document.querySelectorAll('div.language-css').forEach(block => {
-          // Removed the problematic if condition that caused the SyntaxError
-          // The logic to prevent re-enhancing will be handled within enhanceSingleCodeBlock
-          // or by checking a data-attribute on the block.
-          enhanceSingleCodeBlock(block); // This function will be fully fleshed out next
-        });
-      });
-    }
-
+    // Initial enhancement of code blocks on mount
     onMounted(() => {
       enhanceCodeBlocks();
-      // 也为自定义组件 ApiTester 保存配置提供支持
-      // (如果 ApiTester 的配置也用 localStorage)
     });
 
+    // Re-enhance code blocks when the route changes
     watch(
       () => route.path,
       () => {
-        enhanceCodeBlocks(); // 页面切换时重新执行
+        enhanceCodeBlocks();
       },
-      { immediate: true } // 初始加载时也执行
+      { immediate: true } // Also run on initial load after mount
     );
   }
 } 

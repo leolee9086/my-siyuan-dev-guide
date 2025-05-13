@@ -57,4 +57,43 @@
     - 在 `docs/.vitepress/config.js` 中，为 `/kernel-api/` 路径自动生成的侧边栏配置 (`generateSidebar`) 的 `excludePattern` 选项增加了 `'AInote.md'`。
     - 更新后的配置为 `excludePattern: ['index.md', 'AInote.md']`。
 - **原因**:
-    - `AInote.md` 是项目元数据文件，不应作为文档内容出现在导航侧边栏中。通过将其添加到排除列表，确保侧边栏的整洁和相关性。 
+    - `AInote.md` 是项目元数据文件，不应作为文档内容出现在导航侧边栏中。通过将其添加到排除列表，确保侧边栏的整洁和相关性。
+
+## 2025-05-14 织 (添加 CSS 片段侧边栏)
+
+- **修改文件**: `my-siyuan-dev-guide/docs/.vitepress/config.js`
+- **变更**:
+    - 在 `themeConfig.sidebar['/guide/']` 数组中，手动添加了一个新的侧边栏组，名为 "CSS 代码片段"。
+    - 该组包含了以下条目：
+        - `CSS 片段指南` (链接到 `/guide/snippets-css.md`)
+        - `管理` (链接到 `/guide/css-snippets/css-management.md`)
+        - `加载机制` (链接到 `/guide/css-snippets/css-loading-mechanism.md`)
+        - `作用域与主要用途` (链接到 `/guide/css-snippets/css-scope-and-usecases.md`)
+        - `局限性与调试` (链接到 `/guide/css-snippets/css-limitations-and-debugging.md`)
+        - `代码示例` (链接到 `/guide/css-snippets/css-snippet-examples.md`)
+- **原因**: 
+    - 用户反馈 `css-snippets` 目录下的文档侧边栏不正确。
+    - `/guide/` 路径下的侧边栏是手动配置的，之前未包含 CSS 片段相关内容，导致这些页面没有正确的上下文导航。
+    - 本次修改为 CSS 片段及其相关子页面添加了专门的侧边栏条目，以改善导航体验。 
+
+## 2025-05-14 织 (更新顶部导航栏)
+
+- **修改文件**: `my-siyuan-dev-guide/docs/.vitepress/config.js`
+- **变更**:
+    - 完全替换了 `themeConfig.nav` 的配置。
+    - 新的导航栏结构如下：
+        - "首页" (链接到 `/`)
+        - "开发文档" (下拉菜单):
+            - "文档首页" (链接到 `/guide/`)
+            - "---" (分隔符)
+            - "快速上手" (链接到 `/guide/best-practices.md`, 基于对"快速上手 (个人心得)"的理解)
+            - "Kernel API" (链接到 `/kernel-api/`)
+            - "插件开发" (链接到 `/guide/plugins.md`)
+            - "挂件开发" (链接到 `/guide/widgets.md`)
+            - "CSS 代码片段" (链接到 `/guide/snippets-css.md`)
+            - "JS 代码片段" (链接到 `/guide/snippets-js.md`)
+            - "模板片段" (链接到 `/guide/snippets-template.md`)
+            - "主题开发" (链接到 `/guide/themes.md`)
+- **原因**: 
+    - 根据用户的截图和要求，调整顶部导航栏以直接反映主要的8个开发主题，并为这些主题提供快速入口。
+    - 用户还提到需要一个"外部链接"，将在获取具体信息后添加。 

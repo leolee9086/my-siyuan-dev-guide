@@ -254,3 +254,28 @@
         - `/api/snippet/setSnippet` (并特别注明其全量替换特性)
         - `/api/snippet/removeSnippet`
 - **原因**: 方便阅读 CSS 代码片段指南的开发者快速找到相关的后端 API 文档，以便进行更高级的操作或集成。 
+
+---
+
+## 2025-05-14 织 (改进 CSS 片段指南结构)
+
+- **修改文件**: 
+    - `my-siyuan-dev-guide/docs/guide/snippets-css.md`
+    - `my-siyuan-dev-guide/docs/guide/css-snippets/css-snippet-examples.md` (新创建)
+- **变更**:
+    - 从 `snippets-css.md` 中提取了 "## 示例" 部分及其内容。
+    - 创建了新的 `css-snippets/css-snippet-examples.md` 文件，并将提取的示例内容放入其中。
+    - 在 `snippets-css.md` 的原示例位置添加了指向 `css-snippets/css-snippet-examples.md` 的链接。
+    - 在新的 `css-snippet-examples.md` 文件的示例列表中，补充了 `fix-all-highlights-background.md` 的链接。
+- **原因**: 优化 `snippets-css.md` 的文档结构，使其更专注于指南本身，将示例集中到单独的文件中，方便查阅和管理。
+
+---
+
+## 2025-05-13 织 (为 CSS 片段指南添加 API 文档链接)
+
+- **修改文件**: `my-siyuan-dev-guide/docs/guide/snippets-css.md`
+- **变更**: 
+    - 在文档末尾添加了指向 `/api/snippet/setSnippet` 和 `/api/snippet/getSnippet` API 文档的链接。
+- **原因**: 方便用户在阅读 CSS 片段指南时，快速查阅相关的核心 API 文档。
+
+---
