@@ -6,3 +6,41 @@
 //@use "../../../siyuan-scss/mobile" as *;
 
 // You can add other VitePress specific overrides or custom styles below 
+
+// Import Siyuan default styles (if you have them setup, or any other base styles)
+// @import './siyuan-theme.scss'; 
+
+// VitePress specific overrides or custom styles can go here.
+body {
+    // Example: Deeper customization if needed
+}
+
+// Style for the custom install button for code blocks
+.install-to-siyuan-btn {
+    // Try to match a bit with .vp-code-copy button
+    // display: inline-flex; // Align icon and text if any
+    // align-items: center;
+    // justify-content: center;
+    // margin-left: 8px; // Space from copy button or lang tag
+    // padding: 0 8px; // Adjust padding as needed
+    // height: var(--vp-code-copy-icon-size); // Match height
+    // line-height: var(--vp-code-copy-icon-size);
+    // font-size: var(--vp-code-lang-font-size); // Match font size of lang tag
+    // color: var(--vp-code-copy-icon-color);
+    // background-color: transparent; // Or var(--vp-code-copy-bg)
+    // border: 1px solid transparent; // or var(--vp-code-copy-border-color)
+    // border-radius: 4px;
+    // cursor: pointer;
+    // transition: color .25s, border-color .25s, background-color .25s;
+
+    // Let's use the same class vp-code-copy and just add minor adjustments if needed
+    // So the button should have `className = 'install-to-siyuan-btn vp-code-copy'`
+    // And we ensure it has some distinct visual cue or a small margin if placed next to copy button.
+    margin-left: 4px; // A small gap if it's directly after the copy button
+}
+
+.install-to-siyuan-btn svg {
+    width: var(--vp-code-copy-icon-size, 18px); // Use VitePress variable if available, else fallback
+    height: var(--vp-code-copy-icon-size, 18px);
+    fill: currentColor;
+} 

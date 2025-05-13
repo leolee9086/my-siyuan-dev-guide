@@ -20,6 +20,16 @@ CSS 代码片段 (Code Snippet) 是思源笔记提供的一种轻量级界面定
 3.  如果总开关开启且片段自身也启用，则将该段 CSS 代码动态地创建一个 `<style>` 标签（例如 `<style id="snippetCSS{片段ID}">...</style>`）。
 4.  将这个 `<style>` 标签插入到当前 HTML 文档的 `<head>` 元素中。
 
+除了通过思源笔记的图形用户界面管理代码片段外，开发者还可以通过一组后端 API 来以编程方式获取、创建、更新和删除代码片段。这对于批量操作、自动化或与其他工具集成非常有用。
+
+相关的 API 文档如下：
+
+*   **获取代码片段**: [`/api/snippet/getSnippet`](../kernel-api/snippet/getSnippet.md) - 用于检索已存在的代码片段列表，可按类型、启用状态和关键词过滤。
+*   **设置代码片段**: [`/api/snippet/setSnippet`](../kernel-api/snippet/setSnippet.md) - 用于创建新片段或（全量）更新现有片段列表。
+*   **移除代码片段**: [`/api/snippet/removeSnippet`](../kernel-api/snippet/removeSnippet.md) - 用于根据 ID 删除特定的代码片段。
+
+请注意，特别是 `/api/snippet/setSnippet` API 执行的是全量替换操作，使用时请务必仔细阅读其文档说明，以避免意外丢失数据。
+
 ## 作用域
 
 由于 CSS 片段是通过 `<style>` 标签直接插入到 `<head>` 中的，它们的**作用域是全局的**。这意味着你编写的 CSS 规则会影响整个思源笔记的界面。
@@ -44,3 +54,20 @@ CSS 代码片段 (Code Snippet) 是思源笔记提供的一种轻量级界面定
 1.  **检查元素**: 在"元素"（Elements）面板中，找到你想要修改的界面元素。
 2.  **查看样式**: 在"样式"（Styles）面板中，可以看到应用到该元素的所有 CSS 规则，包括来自你的代码片段的规则（通常可以通过其 `<style>` 标签的 ID 识别，如 `#snippetCSS...`）。
 3.  **实时编辑**: 你可以直接在"样式"面板中修改 CSS 规则，实时预览效果。调试满意后，再将最终的代码复制回思源的代码片段设置中保存。 
+
+## 示例
+
+::: code-group
+```css [让所有的div变成红色]
+div{
+    color:red
+}
+```
+```json [snippet-meta]
+{
+    "type":"css",
+    "id":"from-leolee9086-test1",
+    "name":"全部div变红"
+}
+```
+:::
