@@ -210,3 +210,16 @@
    * 改进了整体文档的可读性
 
 **目的**: 使图标包API文档更加清晰易用,特别是考虑到图标包对思源笔记界面外观的重要影响,需要更详细的说明和安全提示。
+
+### 2025-05-14 (织)
+
+*   **修改 `getInstalledWidget.md`**:
+    *   **新增 "在线测试" 章节**:
+        *   添加了使用 `<ApiTester>` Vue 组件的在线测试功能，允许用户在浏览器中直接测试 `/api/bazaar/getInstalledWidget` API。
+        *   提供了 `keyword` 参数的输入字段和描述。
+    *   **新增 "通过辅助函数创建 MCP 工具示例" 章节**:
+        *   提供了一个 TypeScript 代码示例，演示了如何使用 `createSiyuanMcpToolDefinition` 辅助函数为 `/api/bazaar/getInstalledWidget` API 创建 MCP 工具。
+        *   示例包括工具的输入参数定义 (`keyword`)、处理 API 响应并返回已安装挂件列表的 `transformSiyuanResponse` 回调函数实现。
+        *   添加了关于 API Token 管理和辅助函数使用的重要提示。
+    *   **目的**: 增强 `getInstalledWidget.md` 文档的实用性和完整性，为开发者提供便捷的 API 测试方法和 MCP 工具封装示例。
+*   **记录时间**: 2025-05-14 12:41:36 GMT+0800 (中国标准时间)

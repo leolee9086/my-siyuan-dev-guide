@@ -1,6 +1,11 @@
 ---
 title: appendDailyNoteBlock
 ---
+
+> 注意：这是一个社区维护的文档，可能与官方最新版本存在差异。
+>
+> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
+
 # 端点
 
 /api/block/appendDailyNoteBlock
@@ -103,4 +108,8 @@ import apiTester from "@theme/components/ApiTester.vue"
   ]"
 />
 </ClientOnly>
+
+> 注意：这是一个社区维护的文档，可能与官方最新版本存在差异。
+>
+> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
 
