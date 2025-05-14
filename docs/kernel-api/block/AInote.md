@@ -91,7 +91,7 @@
 - **内容**: 
     - 在文档末尾新增了 "### 通过辅助函数创建 MCP 工具示例" 章节。
     - 该章节提供了一个 TypeScript 代码示例，演示了如何使用 `my-siyuan-dev-guide/docs/guide/creating-mcp-siyuan-tools.md` 中定义的 `createSiyuanMcpToolDefinition` 辅助函数，来为 `/api/block/appendBlock` API 创建一个 MCP (Model Context Protocol) 工具。
-    - 示例中包括了工具的 `inputShape` (与 API 参数对应)、`transformSiyuanResponse` 回调函数的实现（用于处理 API 响应并返回新块信息），并展示了如何在调用辅助函数时传入默认的 API URL 和一个演示用的 API Token (`ubux6nysmb1w0drm`)。
+    - 示例中包括了工具的 `inputShape` (与 API 参数对应)、`transformSiyuanResponse` 回调函数的实现（用于处理 API 响应并返回新块信息），并展示了如何在调用辅助函数时传入默认的 API URL 和一个演示用的 API Token (``)。
     - 添加了相关的注意事项，引导读者参考辅助函数的完整文档和注意 Token 安全。
 - **目的**: 
     - 为 `/api/block/appendBlock` API 文档提供一个实际的应用示例，展示如何将其快速封装为 MCP 工具。

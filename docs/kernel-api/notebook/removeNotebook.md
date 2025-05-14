@@ -1,6 +1,10 @@
 ---
 title: 移除笔记本
 ---
+> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/) 中的源码为准。
+>
+> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
+
 # 端点
 
 /api/notebook/removeNotebook
@@ -40,7 +44,7 @@ title: 移除笔记本
 
 ### 请求示例 (JSON)
 
-```
+```json
 {
   "notebook": "20200812220409-rng0qan"
 }
@@ -48,7 +52,7 @@ title: 移除笔记本
 
 ### 成功返回示例
 
-```
+```json
 {
   "code": 0,
   "msg": "",
@@ -58,7 +62,7 @@ title: 移除笔记本
 
 ### 失败返回示例 (例如，笔记本ID不存在)
 
-```
+```json
 {
   "code": -1,
   "msg": "remove box [non-existent-id] failed: notebook [non-existent-id] not found",
@@ -68,7 +72,7 @@ title: 移除笔记本
 
 ### 失败返回示例 (只读模式)
 
-```
+```json
 {
   "code": -1,
   "msg": "只读模式下无法执行该操作",
@@ -78,6 +82,9 @@ title: 移除笔记本
 }
 ```
 
+<script setup>
+import ApiTester from '@theme/components/ApiTester.vue';
+</script>
 <ApiTester 
     apiPath="/api/notebook/removeNotebook"
     method="POST"
@@ -94,4 +101,8 @@ title: 移除笔记本
 </div>
 </template>
 </ApiTester>
+
+> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/) 中的源码为准。
+>
+> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
 

@@ -1,11 +1,15 @@
 ---
 title: 重命名笔记本
 ---
-# 端点
-
-/api/notebook/renameNotebook
+> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/) 中的源码为准。
+>
+> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
 
 # 重命名笔记本
+
+## 端点
+
+/api/notebook/renameNotebook
 
 需要认证 (管理员权限，检查只读模式)
 
@@ -40,7 +44,7 @@ title: 重命名笔记本
 
 ### 请求示例
 
-```
+```json
 {
   "notebook": "20200812220409-rng0qan",
   "name": "新的笔记本名称"
@@ -49,7 +53,7 @@ title: 重命名笔记本
 
 ### 成功返回示例
 
-```
+```json
 {
   "code": 0,
   "msg": "",
@@ -59,7 +63,7 @@ title: 重命名笔记本
 
 ### 失败返回示例 (例如，笔记本ID不存在)
 
-```
+```json
 {
   "code": -1,
   "msg": "rename box [non-existent-id] failed: notebook [non-existent-id] not found",
@@ -71,7 +75,7 @@ title: 重命名笔记本
 
 ### 失败返回示例 (例如，新名称不合法)
 
-```
+```json
 {
   "code": -1,
   "msg": "box name [\\] is invalid: path segments should not be empty",
@@ -83,7 +87,7 @@ title: 重命名笔记本
 
 ### 失败返回示例 (只读模式)
 
-```
+```json
 {
   "code": -1,
   "msg": "只读模式下无法执行该操作",
@@ -92,7 +96,9 @@ title: 重命名笔记本
   }
 }
 ```
-
+<script setup>
+import ApiTester from '@theme/components/ApiTester.vue';
+</script>
 <ApiTester 
     apiPath="/api/notebook/renameNotebook"
     method="POST"
@@ -109,4 +115,8 @@ title: 重命名笔记本
 </div>
 </template>
 </ApiTester>
+
+> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/) 中的源码为准。
+>
+> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
 

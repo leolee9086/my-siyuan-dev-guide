@@ -1,6 +1,10 @@
 ---
 title: 打开笔记本
 ---
+> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/) 中的源码为准。
+>
+> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
+
 # 端点
 
 /api/notebook/openNotebook
@@ -104,6 +108,9 @@ title: 打开笔记本
 }
 ```
 
+<script setup>
+import ApiTester from '@theme/components/ApiTester.vue';
+</script>
 <ApiTester 
     apiPath="/api/notebook/openNotebook"
     method="POST"
@@ -117,4 +124,8 @@ title: 打开笔记本
 </div>
 </template>
 </ApiTester>
+
+> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/) 中的源码为准。
+>
+> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
 

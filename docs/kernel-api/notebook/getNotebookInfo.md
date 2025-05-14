@@ -1,13 +1,15 @@
 ---
 title: 获取笔记本信息
 ---
-# 端点
-
-/api/notebook/getNotebookInfo
-
-[← 返回 Notebook API 列表](./index.html)
+> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/) 中的源码为准。
+>
+> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
 
 # 获取笔记本信息
+
+## 端点
+
+/api/notebook/getNotebookInfo
 
 [在 GitHub 上查看源码 (notebook.go)](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/notebook.go#L31) [BoxInfo 定义 (box.go)](https://github.com/siyuan-note/siyuan/blob/master/kernel/model/box.go#L380)
 
@@ -123,4 +125,6 @@ import ApiTester from '@theme/components/ApiTester.vue';
   />
 </ClientOnly>
 
-> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/bazaar.go](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/bazaar.go) 中的源码为准。
+> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/) 中的源码为准。
+>
+> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)

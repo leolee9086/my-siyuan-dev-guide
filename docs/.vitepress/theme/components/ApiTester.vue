@@ -19,7 +19,7 @@
             <span v-if="configSaved" class="config-saved-msg">配置已保存!</span>
         </div>
     </details>
-
+   <slot name="warning"></slot>
     <!-- API 测试表单 -->
     <form @submit.prevent="sendRequest" class="test-form">
       <h3>{{ title || 'API 在线测试' }}</h3>

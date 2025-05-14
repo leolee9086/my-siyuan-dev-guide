@@ -1,13 +1,17 @@
 ---
 title: 获取笔记本配置
 ---
-# 端点
+> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/) 中的源码为准。
+>
+> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
+
+# 获取笔记本配置
+
+## 端点
 
 /api/notebook/getNotebookConf
 
 [← 返回 Notebook API 列表](./index.html)
-
-# 获取笔记本配置
 
 [在 GitHub 上查看源码 (notebook.go)](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/notebook.go#L301) [BoxConf 定义 (box.go)](https://github.com/siyuan-note/siyuan/blob/master/kernel/conf/box.go#L20)
 
@@ -88,7 +92,7 @@ title: 获取笔记本配置
       "refCreateSavePath": "",
       "docCreateSaveBox": "",
       "docCreateSavePath": "",
-      "dailyNoteSavePath": "\/daily note\/\{\{now \| date \"2006/01\"\}\}\/\{\{now \| date \"2006-01-02\"\}\}"
+      "dailyNoteSavePath": "/daily note/\{\{now \| date \"2006/01\"\}\}/\{\{now \| date \"2006-01-02\"\}"}
     }
   }
 }
@@ -126,3 +130,7 @@ import ApiTester from '@theme/components/ApiTester.vue';
     ]"
   />
 </ClientOnly>
+
+> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/) 中的源码为准。
+>
+> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)

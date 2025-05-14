@@ -115,7 +115,9 @@ title: 设置笔记本配置
   }
 }
 ```
-
+<script setup>
+import ApiTester from '@theme/components/ApiTester.vue';
+</script>
 <ApiTester 
     apiPath="/api/notebook/setNotebookConf"
     method="POST"
