@@ -1,6 +1,10 @@
 ---
 title: 关闭笔记本
 ---
+> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/) 中的源码为准。
+>
+> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
+
 # 端点
 
 /api/notebook/closeNotebook
@@ -70,9 +74,35 @@ title: 关闭笔记本
   "data": null
 }
 ```
-> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/bazaar.go](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/bazaar.go) 中的源码为准。
-> 
-> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
+
+## 在线测试
+
+:::danger 注意
+此操作会关闭（卸载）指定的笔记本，使其在工作空间中不再可见，但不会删除物理文件。
+在不完全信任的网站或工具中输入您的 API Token 存在安全风险。本站点的在线测试功能在您的浏览器本地运行，但仍建议您仅在测试环境或使用临时的、权限受限的 Token。
+:::
+
+<script setup>
+import ApiTester from '@theme/components/ApiTester.vue';
+</script>
+
+<ClientOnly>
+  <ApiTester
+    title="测试 closeNotebook"
+    endpoint="/api/notebook/closeNotebook"
+    method="POST"
+    :params="[
+      {
+        name: 'notebook',
+        label: '笔记本 ID',
+        type: 'string',
+        required: true,
+        description: '要关闭的笔记本的 ID。'
+      }
+    ]"
+  />
+</ClientOnly>
+
 > 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/) 中的源码为准。
-> 
+>
 > 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)

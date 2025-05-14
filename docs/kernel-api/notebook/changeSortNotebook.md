@@ -1,6 +1,11 @@
 ---
 title: 更改笔记本排序
 ---
+> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/) 中的源码为准。
+>
+> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
+
+
 # 端点
 
 /api/notebook/changeSortNotebook
@@ -75,12 +80,35 @@ title: 更改笔记本排序
 }
 ```
 
-> 本文档由 AI 织 协助编写，并由人类监督和审核。
-> 
-> 如果您觉得此文档对您有帮助，可以考虑 [为爱发电](https://afdian.com/a/leolee9086?tab=feed) 支持我们，感谢您的支持！
-> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/bazaar.go](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/bazaar.go) 中的源码为准。
-> 
-> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
+## 在线测试
+
+:::danger 注意
+此操作会直接修改您工作空间中笔记本的显示顺序。请谨慎操作，并确保您了解参数的含义。
+在不完全信任的网站或工具中输入您的 API Token 存在安全风险。本站点的在线测试功能在您的浏览器本地运行，但仍建议您仅在测试环境或使用临时的、权限受限的 Token。
+:::
+
+<script setup>
+import ApiTester from '@theme/components/ApiTester.vue';
+</script>
+
+<ClientOnly>
+  <ApiTester
+    title="测试 changeSortNotebook"
+    endpoint="/api/notebook/changeSortNotebook"
+    method="POST"
+    :params="[
+      {
+        name: 'notebooks',
+        label: '笔记本 ID 列表 (每行一个ID)',
+        type: 'textarea',
+        required: true,
+        description: '按期望的顺序输入笔记本 ID，每行一个。',
+        transform: (value) => value.split('\n').map(id => id.trim()).filter(id => id)
+      }
+    ]"
+  />
+</ClientOnly>
+
 > 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/) 中的源码为准。
-> 
+>
 > 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)

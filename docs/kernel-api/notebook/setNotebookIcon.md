@@ -91,3 +91,22 @@ title: 设置笔记本图标
 }
 ```
 
+<ApiTester 
+    apiPath="/api/notebook/setNotebookIcon"
+    method="POST"
+    :payloadExamples="[
+        { 
+            label: '设置笔记本图标 (请替换ID和图标)', 
+            payload: { notebook: '20200812220409-rng0qan', icon: '🚀' } 
+        }
+    ]"
+>
+<template v-slot:warning>
+<div style="color: orange; border: 1px solid orange; padding: 10px; margin-top: 10px;">
+    <strong>注意:</strong> 此操作需要提供一个实际存在的笔记本 ID 和图标 (通常是 Emoji)。
+    即使提供的笔记本 ID 不存在，此 API 也可能返回成功，请以实际效果为准。
+    在只读模式下此操作可能会失败。
+</div>
+</template>
+</ApiTester>
+

@@ -99,9 +99,28 @@ title: 获取笔记本信息
   "data": null
 }
 ```
+
+## 在线测试
+
+<script setup>
+import ApiTester from '@theme/components/ApiTester.vue';
+</script>
+
+<ClientOnly>
+  <ApiTester
+    title="测试 getNotebookInfo"
+    endpoint="/api/notebook/getNotebookInfo"
+    method="POST"
+    :params="[
+      {
+        name: 'notebook',
+        label: '笔记本 ID',
+        type: 'string',
+        required: true,
+        description: '要获取信息的笔记本的 ID。'
+      }
+    ]"
+  />
+</ClientOnly>
+
 > 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/bazaar.go](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/bazaar.go) 中的源码为准。
-> 
-> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
-> 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/) 中的源码为准。
-> 
-> 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)

@@ -103,3 +103,26 @@ title: 获取笔记本配置
   "data": null
 }
 ```
+
+## 在线测试
+
+<script setup>
+import ApiTester from '@theme/components/ApiTester.vue';
+</script>
+
+<ClientOnly>
+  <ApiTester
+    title="测试 getNotebookConf"
+    endpoint="/api/notebook/getNotebookConf"
+    method="POST"
+    :params="[
+      {
+        name: 'notebook',
+        label: '笔记本 ID',
+        type: 'string',
+        required: true,
+        description: '要获取配置的笔记本的 ID。'
+      }
+    ]"
+  />
+</ClientOnly>

@@ -358,3 +358,43 @@
 - **原因**: 响应哥哥的要求，为开发者提供一种在 HTML 块内部通过 JavaScript 获取其自身所在思源块 `data-node-id` 的实用方法和示例代码。
 
 ---
+
+## 2025-05-13 织 (整理文档结构)
+
+- **修改文件**: `my-siyuan-dev-guide/docs/guide/other-extensions.md`
+- **新增文件**: `my-siyuan-dev-guide/docs/guide/html-block.md`
+- **变更**: 
+    - 将 `other-extensions.md` 中关于 "HTML 块" 的详细内容拆分到新的 `html-block.md` 文件中。
+    - 将 `other-extensions.md` 中原来的 "HTML 块" 部分修改为一个指向新文件 `html-block.md` 的列表项。
+- **原因**: 根据哥哥的要求，调整文档结构，使 "其它扩展方式" 成为一个列表，并将 HTML 块的详细说明独立成篇，以提升文档的组织性和可读性。
+- **遇到的问题**: `edit_file` 工具在尝试删除 `other-extensions.md` 中原有 HTML 块内容时，多次未能按预期执行删除操作，即使尝试了不同的 `code_edit` 格式。最终放弃了通过工具自动完成该文件的清理，需要哥哥手动检查并修正 `other-extensions.md` 文件，确保其中只包含列表项。
+
+---
+
+## 2025-05-14 织 (拆分插件文档)
+
+- **修改文件**: `my-siyuan-dev-guide/docs/guide/plugins.md`
+- **新增文件夹**: `my-siyuan-dev-guide/docs/guide/plugin-dev/` (此文件夹之前已存在，本次操作在其中创建了新文件)
+- **新增文件**:
+    - `my-siyuan-dev-guide/docs/guide/plugin-dev/introduction.md`
+    - `my-siyuan-dev-guide/docs/guide/plugin-dev/basic-structure.md`
+    - `my-siyuan-dev-guide/docs/guide/plugin-dev/lifecycle.md`
+    - `my-siyuan-dev-guide/docs/guide/plugin-dev/dev-environment.md`
+    - `my-siyuan-dev-guide/docs/guide/plugin-dev/loading-debugging.md`
+- **变更**: 
+    - 根据哥哥的要求，将原 `plugins.md` 文件中的各个子章节内容拆分到 `plugin-dev/` 目录下的多个新 Markdown 文件中。
+    - `plugins.md` 文件被修改为插件开发指南的概览页，包含指向这些新拆分文档的链接。
+- **原因**: 提升插件开发指南的组织性和可读性，使每个主题都有更专注的文档页面。
+- **遇到的问题**: 在尝试修改 `plugins.md` 以移除旧内容并添加链接时，`edit_file` 工具第一次未能正确删除所有旧内容。后续通过提供 `plugins.md` 的完整期望内容给 `edit_file` 工具，成功完成了修改。
+
+## {{YYYY-MM-DD}} 织 (创建 MCP 工具定义辅助函数文档)
+
+- **新增文件**: `creating-mcp-siyuan-tools.md`
+- **内容**: 
+    - 创建了一个新的指南文档，用于解释如何使用一个名为 `createSiyuanMcpToolDefinition` 的辅助函数来快速生成与思源 API 交互的 MCP (Model Context Protocol) 工具定义。
+    - 文档包含该辅助函数的完整 TypeScript 源代码、详细的参数说明、一个依赖的 `callSiyuanAPI` 函数的示例实现和解释。
+    - 提供了具体的使用示例，演示了如何定义一个获取思源版本和一个根据ID获取笔记内容的 MCP 工具，并说明了如何将其注册到 `McpServer`。
+    - 解释了在生成的工具处理器中如何管理思源 API 的 URL 和 Token (通过 `extra` 上下文、环境变量或默认值)。
+    - 包含了错误处理、依赖导入、`callSiyuanAPI` 的通用性以及类型安全等方面的注意事项。
+- **目的**: 为开发者提供一种便捷的方式来将思源功能封装为标准的、非 HUI 的 MCP 工具，减少模板代码的编写，并推广在 MCP Server 中使用思源 API 的最佳实践。
+- **记录时间**: {{YYYY-MM-DD HH:MM:SS Z}}

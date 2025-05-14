@@ -78,3 +78,20 @@ title: 移除笔记本
 }
 ```
 
+<ApiTester 
+    apiPath="/api/notebook/removeNotebook"
+    method="POST"
+    :payloadExamples="[
+        { label: '移除笔记本 (请替换为实际ID)', payload: { notebook: '20200812220409-rng0qan' } }
+    ]"
+>
+<template v-slot:warning>
+<div style="color: red; border: 2px solid darkred; background-color: #ffeeee; padding: 15px; margin-top: 10px; font-weight: bold;">
+    <strong style="font-size: 1.2em;">⚠️ 警告：这是一个非常危险的操作！</strong><br>
+    执行此操作将永久删除指定的笔记本及其所有内容，通常无法恢复。<br>
+    请确保您知道自己在做什么，并已备份重要数据。<br>
+    在只读模式下此操作可能会失败。
+</div>
+</template>
+</ApiTester>
+

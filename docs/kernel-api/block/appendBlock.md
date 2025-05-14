@@ -97,3 +97,69 @@ title: 追加块
 }
 ```
 
+### 通过辅助函数创建 MCP 工具示例
+
+假设您已经在项目中引入了前文 [`快速创建与思源API交互的MCP工具`](../../guide/creating-mcp-siyuan-tools.md) 指南中定义的 `createSiyuanMcpToolDefinition` 辅助函数。
+您可以使用它来快速为此 `/api/block/appendBlock` 端点创建一个 MCP 工具定义。
+
+```typescript
+// 假设 createSiyuanMcpToolDefinition 已经从您的工具辅助文件中导入
+// import { createSiyuanMcpToolDefinition } from './path/to/siyuanToolHelper';
+import { z } from 'zod';
+
+// 为 /api/block/appendBlock 创建 MCP 工具
+const appendSiyuanBlockTool = createSiyuanMcpToolDefinition(
+    'appendSiyuanBlock',
+    '在指定的父块末尾追加新的内容块。',
+    '/api/block/appendBlock', // Siyuan API endpoint
+    'POST',                   // Siyuan API method
+    { // inputShape: 定义工具接收的参数，与 API 文档一致
+        data: z.string().describe("要追加的块的内容。"),
+        dataType: z.enum(['markdown', 'dom']).describe("数据类型，'markdown' 或 'dom'。"),
+        parentID: z.string().min(1, "parentID 不能为空").describe("目标父块的 ID。")
+    },
+    async (siyuanData, toolArgs) => {
+        // /api/block/appendBlock 成功时返回的 data 结构如下：
+        // interface SiyuanAppendBlockResponse {
+        //     transactions: Array<{
+        //         doOperations: Array<{
+        //             action: string;
+        //             id: string;     // 新块的 ID
+        //             data: string;   // 新块的 DOM 内容
+        //             parentID: string;
+        //         }>;
+        //     }>;
+        // }
+        
+        // 我们可以提取新块的 ID 和内容进行返回
+        if (siyuanData && siyuanData.transactions && siyuanData.transactions[0] && siyuanData.transactions[0].doOperations && siyuanData.transactions[0].doOperations[0]) {
+            const newBlock = siyuanData.transactions[0].doOperations[0];
+            return {
+                content: [
+                    { type: 'text', text: `成功在父块 ${toolArgs.parentID} 下追加了新块。` },
+                    { type: 'object', data: { newBlockId: newBlock.id, newBlockContent: newBlock.data, parentId: newBlock.parentID } }
+                ]
+            };
+        }
+        return {
+            content: [{ type: 'text', text: '块已追加，但未从响应中提取到详细信息。' }]
+        };
+    },
+    'http://127.0.0.1:6806', // 默认思源 API URL
+    'ubux6nysmb1w0drm'       // 演示用的默认思源 API Token
+);
+
+// 然后您可以像这样将此工具注册到您的 McpServer:
+// myMcpServer.tool(
+//     appendSiyuanBlockTool.name,
+//     appendSiyuanBlockTool.inputShape,
+//     appendSiyuanBlockTool.handler
+// );
+```
+
+**注意**：
+
+-   上述代码中的 `createSiyuanMcpToolDefinition` 和 `callSiyuanAPI` (被前者内部调用) 的具体实现，请参考 `my-siyuan-dev-guide/docs/guide/creating-mcp-siyuan-tools.md` 文档。
+-   示例中的 `defaultSiyuanApiToken` 使用了您提供的 `'ubux6nysmb1w0drm'` 作为演示。在实际应用中，请确保 Token 的安全管理。
+-   `transformSiyuanResponse` 回调函数解析了 `/api/block/appendBlock` 成功时的响应，并提取了新块的 ID 和内容。您可以根据需要调整返回给 MCP 客户端的信息。
+

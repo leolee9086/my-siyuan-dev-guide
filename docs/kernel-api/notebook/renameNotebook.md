@@ -43,7 +43,7 @@ title: 重命名笔记本
 ```
 {
   "notebook": "20200812220409-rng0qan",
-  "name": "我的日常记录本"
+  "name": "新的笔记本名称"
 }
 ```
 
@@ -92,4 +92,21 @@ title: 重命名笔记本
   }
 }
 ```
+
+<ApiTester 
+    apiPath="/api/notebook/renameNotebook"
+    method="POST"
+    :payloadExamples="[
+        { 
+            label: '重命名笔记本 (请替换为实际ID和新名称)', 
+            payload: { notebook: '20200812220409-rng0qan', name: '新的笔记本名称' } 
+        }
+    ]"
+>
+<template v-slot:warning>
+<div style="color: orange; border: 1px solid orange; padding: 10px; margin-top: 10px;">
+    <strong>注意:</strong> 此操作需要提供一个实际存在的笔记本 ID 和有效的新名称。在只读模式下此操作可能会失败。
+</div>
+</template>
+</ApiTester>
 

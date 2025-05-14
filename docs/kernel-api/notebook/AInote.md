@@ -54,4 +54,26 @@
      * 基于源码实现添加了实际的请求/响应示例
      * 详细描述了创建笔记本的工作流程
      * 添加了源码位置引用和在线测试区域
-* **结果**: 成功补充了createNotebook API的文档，准确描述了创建笔记本的过程和返回数据结构。文档包含了完整的源码引用，符合项目规范。 
+* **结果**: 成功补充了createNotebook API的文档，准确描述了创建笔记本的过程和返回数据结构。文档包含了完整的源码引用，符合项目规范。
+
+### 2025-05-14 织
+
+- **任务**: 为目录下所有指定的 API Markdown 文档添加 `<ApiTester>` 在线测试组件及相关警告。
+- **涉及文件**:
+    - `changeSortNotebook.md`
+    - `closeNotebook.md`
+    - `createNotebook.md`
+    - `getNotebookConf.md`
+    - `getNotebookInfo.md`
+    - `lsNotebooks.md`
+    - `openNotebook.md`
+    - `removeNotebook.md`
+    - `renameNotebook.md`
+    - `setNotebookConf.md`
+    - `setNotebookIcon.md`
+- **变更详情**: 
+    - 为上述每个文件末尾添加了 `<ApiTester>` Vue 组件，配置了对应的 `apiPath` 和 `method`。
+    - 根据各 API 的请求参数和预期行为，提供了示例 `payloadExamples`。
+    - 针对需要特定 ID、可能失败（如只读模式）、或具有破坏性（如 `removeNotebook`）的 API，通过 `<template v-slot:warning>` 添加了醒目的警告提示框，增强了文档的可用性和安全性。
+    - 例如，为 `removeNotebook.md` 添加了严重警告，提示其操作的不可逆性；为 `setNotebookIcon.md` 添加了关于即使ID无效也可能成功的提示。
+- **目的**: 提升 API 文档的交互性和实用性，方便开发者直接在文档页面测试 API，并了解潜在风险。 

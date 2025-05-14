@@ -116,3 +116,44 @@ title: 设置笔记本配置
 }
 ```
 
+<ApiTester 
+    apiPath="/api/notebook/setNotebookConf"
+    method="POST"
+    :payloadExamples="[
+        {
+            label: '更改名称和图标 (请替换ID)',
+            payload: { 
+                notebook: '20200812220409-rng0qan', 
+                conf: { 
+                    name: '我的新笔记本名称', 
+                    icon: '💡' 
+                }
+            }
+        },
+        {
+            label: '设置关闭状态 (请替换ID)',
+            payload: { 
+                notebook: '20210310102030-abcdefg', 
+                conf: { 
+                    closed: true 
+                }
+            }
+        },
+        {
+            label: '修改排序值 (请替换ID)',
+            payload: { 
+                notebook: '20200812220409-rng0qan', 
+                conf: { 
+                    sort: 10 
+                }
+            }
+        }
+    ]"
+>
+<template v-slot:warning>
+<div style="color: orange; border: 1px solid orange; padding: 10px; margin-top: 10px;">
+    <strong>注意:</strong> 此操作需要提供一个实际存在的笔记本 ID。`conf` 对象中的具体可配置项可能随思源版本变化。在只读模式下此操作可能会失败。
+</div>
+</template>
+</ApiTester>
+

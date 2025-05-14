@@ -104,3 +104,17 @@ title: 打开笔记本
 }
 ```
 
+<ApiTester 
+    apiPath="/api/notebook/openNotebook"
+    method="POST"
+    :payloadExamples="[
+        { label: '打开笔记本 (请替换为实际ID)', payload: { notebook: '20200812220409-rng0qan' } }
+    ]"
+>
+<template v-slot:warning>
+<div style="color: red; border: 1px solid red; padding: 10px; margin-top: 10px;">
+    <strong>注意:</strong> 此操作需要提供一个实际存在的笔记本 ID。如果笔记本已打开，操作仍会成功。在只读模式下此操作可能会失败。
+</div>
+</template>
+</ApiTester>
+

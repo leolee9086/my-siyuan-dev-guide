@@ -133,3 +133,13 @@ title: 列出笔记本
 > 本文档非官方出品，主要由 AI 辅助编写，不保证绝对准确。如有疑问，请以 [kernel/api/](https://github.com/siyuan-note/siyuan/blob/master/kernel/api/) 中的源码为准。
 > 
 > 如果您觉得本文档有帮助，可以考虑赞助支持：[爱发电](https://afdian.com/a/leolee9086?tab=feed)
+
+<ApiTester 
+    apiPath="/api/notebook/lsNotebooks"
+    method="POST"
+    :payloadExamples="[
+        { label: '列出所有笔记本', payload: {} },
+        { label: '仅列出含闪卡的笔记本', payload: { flashcard: true } },
+        { label: '列出所有笔记本 (显式)', payload: { flashcard: false } }
+    ]"
+/>
